@@ -28,8 +28,9 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> getUserById(ServerRequest request) {
-        Mono<User> userMono = userService.getUserById(Integer.parseInt(request.pathVariable("id")));
-        return userMono.flatMap(user -> ServerResponse.ok()
+        int id = Integer.parseInt(request.pathVariable("id"));
+        return userService.getUserById(id)
+                .flatMap(user -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(fromValue(user))
                 )
