@@ -18,7 +18,7 @@ Building Reactive app with Spring Webflux.
 **Running the Database**
 Type the following command in your terminal to run the database -
 
-     docker-compose up 
+     docker-compose up -d
 
 **Running the App**
 Type the following command in your terminal to run the app -
