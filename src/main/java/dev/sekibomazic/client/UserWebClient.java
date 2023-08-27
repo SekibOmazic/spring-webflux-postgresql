@@ -31,7 +31,7 @@ public class UserWebClient {
                 .get()
                 .uri(USERS_URL_TEMPLATE, userId)
                 .retrieve()
-                .onStatus(HttpStatus::is5xxServerError,
+                .onStatus(HttpStatus.INTERNAL_SERVER_ERROR::equals,
                         error -> Mono.error(new RuntimeException("There is an error while retrieving the user: " + userId)))
                 .bodyToMono(User.class)
                 .doOnError(error -> logger.error("There is an error while sending request {}", error.getMessage()))
